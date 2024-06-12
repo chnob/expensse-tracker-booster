@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  tasks:
+  - name: MAJ apt
+    apt: 
+      update_cache: yes
+      upgrade: yes
+  - name: Install Git
+    apt:
+      name: git
+      state: present
+      update_cache: yes
+  - name: Clone Remote Git Repository
+    git:
+      repo: https://github.com/chnob/expensse-tracker-booster.git
+      dest: /home/vagrant/.git/expensse-tracker-booster
+      clone: yes
+      update: yes
+      force: yes
+  - name: Install Python3
+    apt:
+      name: python3.6
+      state: present
+      update_cache: yes
